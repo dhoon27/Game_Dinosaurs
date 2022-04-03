@@ -21,11 +21,9 @@ SRCS = $(notdir $(wildcard $(SRC_DIR)/*.c))
 #SRCS에서 .c를 .o로 대체한다.
 OBJS = $(SRCS:.c=.o)
 # #SRCS에서 .c를 .d로 대체한다.
-# DEPS = $(SRCS:.c=.d)
 
 # OBJS 안의 object 파일들 이름 앞에 $(OBJ_DIR)/ 을 붙인다.
 OBJECTS = $(patsubst %.o,$(OBJ_DIR)/%.o,$(OBJS))
-# DEPS = $(OBJECTS:.o=.d)
 
 all: $(TARGET)
 
