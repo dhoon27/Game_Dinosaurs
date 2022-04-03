@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "game_select_phase.h"
 #include "print_image.h"
 #include "console_control.h"
@@ -33,7 +34,8 @@ void game_select_phase(void)
             }
             else if(ch == 10){
                 if(nh == h+2){
-                    break;
+                    sleep(3);
+                    return;
                 }
                 else{
                     system("clear");
@@ -45,9 +47,11 @@ void game_select_phase(void)
         fflush(stdout);
 
         print_dinosaur();
-        for(int i=0; i<400000000;i++);
+        usleep(800000);
+        // for(int i=0; i<400000000;i++);
         print_dinosaur_rev();
-        for(int i=0; i<400000000;i++);
+        usleep(800000);
+        // for(int i=0; i<400000000;i++);
     }
     close_keyboard();
     // fflush(stdout);

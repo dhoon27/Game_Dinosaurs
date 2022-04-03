@@ -8,7 +8,6 @@ int main(void)
     system("clear");
     printf("\e[?25l");
     game_select_phase();
-    while(1);
-    // game_select_phase();
+    system("clear");
     return 0;
 }
