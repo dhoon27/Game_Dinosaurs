@@ -3,6 +3,5 @@
 
 void gotoxy(int lines, int cols) 
 {
-     printf("\033[%d;%df", cols, lines);
-     fflush(stdout);
+    printf("\033[%d;%df", lines, cols);
 }
