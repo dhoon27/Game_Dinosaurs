@@ -80,8 +80,15 @@ void print_menu(void)
 {
     int h = (MIN_LINES + MAX_LINES)/2 + 4;
     int w = (MIN_COLS + MAX_COLS)/2;
-    gotoxy(h, w+1);
+    gotoxy(h, w);
     printf("RUN");
     gotoxy(h+2, w);
     printf("QUIT");
+    fflush(stdout);
+}
+void delete_xy(int lines, int cols)
+{
+    gotoxy(lines, cols);
+    printf(" ");
+    fflush(stdout);
 }
