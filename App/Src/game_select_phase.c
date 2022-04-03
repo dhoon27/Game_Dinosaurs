@@ -1,10 +1,10 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include "game_select_phase.h"
 #include "print_image.h"
 #include "console_control.h"
 #include "linux_kbhit.h"
+#include "start_game.h"
 
 void game_select_phase(void)
 {
@@ -17,7 +17,9 @@ void game_select_phase(void)
     int nh = h, nw = w;
     gotoxy(nh, nw);
     printf("*");
+    fflush(stdout);
     while(1){
+        fflush(stdin);
         if(_kbhit()){
             int ch = _getch();
             if(ch == (int)'w'){
@@ -38,7 +40,9 @@ void game_select_phase(void)
                     return;
                 }
                 else{
-                    system("clear");
+                    start_game();
+                    print_boundary();
+                    print_menu();
                 }
             }
         }
@@ -48,13 +52,8 @@ void game_select_phase(void)
 
         print_dinosaur();
         usleep(800000);
-        // for(int i=0; i<400000000;i++);
         print_dinosaur_rev();
         usleep(800000);
-        // for(int i=0; i<400000000;i++);
     }
     close_keyboard();
-    // fflush(stdout);
-    // fflush(stdin);
-
 }
