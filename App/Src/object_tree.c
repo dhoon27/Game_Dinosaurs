@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 #include "console_control.h"
 #include "object_tree.h"
 #include "print_image.h"
@@ -102,16 +104,21 @@ void generate_tree(int idx)
     tree[idx].hitbox[4][0] = TREE_MAX_COLS + 2;
     tree[idx].hitbox[4][1] = TREE_MAX_COLS + 2;
 }
+void random_tree(int level)
+{
+    //seed를 현재 시간으로 --> 실행 마다 seed 달라짐
+    srand((unsigned int)time(NULL));
+    int random = (rand() % (MAX_TREE_CNT - level));
+    if(random <= 1)
+        generate_tree(tidx++);
+}
 void game_tree(void)
 {
-    // while(1){
-    //     if(tidx >= MAX_TREE_CNT)
-    //         return;
-    //     generate_tree(tidx++);
-    // }
-    generate_tree(tidx++);
     int i;
     while(1){
+        if (tidx >= MAX_TREE_CNT)
+            return;
+        random_tree(tidx+1);
         for (i = 0; i < tidx; i++){
             if (tree[i].w + 4 <= TREE_MIN_COLS)
                 continue;
@@ -120,8 +127,6 @@ void game_tree(void)
             delete_tree(tree[i].h, tree[i].w);
             tree[i].w--;
         }
-        
-
     }
     
 }

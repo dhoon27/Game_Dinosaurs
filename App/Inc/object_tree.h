@@ -4,7 +4,7 @@
 #define TREE_MAX_COLS (128)
 #define TREE_MIN_LINES (3)
 #define TREE_MAX_LINES (23)
-#define MAX_TREE_CNT (50)
+#define MAX_TREE_CNT (20)
 
 // char tree_image[3][5] = {
 //     {'#'},
@@ -25,5 +25,5 @@ int check_tree(int, int);
 void game_tree(void);
 void move_tree(int, int);
 void delete_tree(int, int);
-
+void random_make_tree(int);
 void generate_tree(int);
