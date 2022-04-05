@@ -1,12 +1,29 @@
 #pragma once
 
+#define TREE_MIN_COLS (28)
+#define TREE_MAX_COLS (128)
+#define TREE_MIN_LINES (3)
+#define TREE_MAX_LINES (23)
+#define MAX_TREE_CNT (50)
+
+// char tree_image[3][5] = {
+//     {'#'},
+//     {'#','#','#'},
+//     {'#','#','#','#','#'},
+// };
+
 typedef struct _TREE{
     int type;
     int h, w;
     int hitbox[5][2];
 }TREE;
 
-TREE tree;
+TREE tree[MAX_TREE_CNT];
+int tidx;
 
-void init_dino(void);
-void jump_dino(void);
+int check_tree(int, int);
+void game_tree(void);
+void move_tree(int, int);
+void delete_tree(int, int);
+
+void generate_tree(int);

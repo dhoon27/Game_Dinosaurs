@@ -78,7 +78,7 @@ void game_dino(void)
             if (ch == 0x20){
                 jump_dino();
                 while (_kbhit()){
-                    int c = _getch();
+                    _getch();
                 }
             }
         }
