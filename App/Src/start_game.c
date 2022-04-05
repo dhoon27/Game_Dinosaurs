@@ -1,9 +1,10 @@
 #include <stdlib.h>
-#include <unistd.h>
 #include "start_game.h"
-#include "print_image.h"
 #include "console_control.h"
-#include "object.h"
+#include "object_dino.h"
+#include "object_tree.h"
+#include "print_image.h"
+
 void start_game(void)
 {
     system("clear");
@@ -11,9 +12,7 @@ void start_game(void)
     print_boundary(GAME_MIN_LINES, GAME_MIN_COLS, GAME_MAX_LINES, GAME_MAX_COLS);
     
     while(1){
-        jump_dino();
+        game_dino();
+        for(int i=0;i<1000000000;i++);
     }
-
-    while(1);
-    sleep(3);
 }

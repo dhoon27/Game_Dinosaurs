@@ -40,6 +40,8 @@ void game_select_phase(void)
                     return;
                 }
                 else{
+                    fflush(stdout);
+                    close_keyboard();
                     start_game();
                     print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
                     print_menu();

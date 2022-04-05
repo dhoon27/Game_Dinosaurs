@@ -38,28 +38,28 @@ void delete_xy(int lines, int cols)
 }
 void print_dinosaur(int h, int w)
 {
-    gotoxy(h, w);
-    printf("        $$$$$$$ ");
-    gotoxy(h+1, w);
-    printf("       $$ $$$$$$");
-    gotoxy(h+2, w);
-    printf("       $$$$$$$$$");
+    gotoxy(h, w+8);
+    printf("$$$$$$$");
+    gotoxy(h+1, w+7);
+    printf("$$ $$$$$$");
+    gotoxy(h+2, w+7);
+    printf("$$$$$$$$$");
     gotoxy(h+3, w);
-    printf("$      $$$      ");
+    printf("$      $$$");
     gotoxy(h+4, w);
-    printf("$$     $$$$$$$  ");
+    printf("$$     $$$$$$$");
     gotoxy(h+5, w);
-    printf("$$$   $$$$$     ");
-    gotoxy(h+6, w);
-    printf(" $$  $$$$$$$$$$ ");
-    gotoxy(h+7, w);
-    printf(" $$$$$$$$$$$    ");
-    gotoxy(h+8, w);
-    printf("  $$$$$$$$$$    ");
-    gotoxy(h+9, w);
-    printf("    $$$$$$$$    ");
-    gotoxy(h+10, w);
-    printf("     $$$$$$     ");
+    printf("$$$   $$$$$");
+    gotoxy(h+6, w+1);
+    printf("$$  $$$$$$$$$$");
+    gotoxy(h+7, w+1);
+    printf("$$$$$$$$$$$");
+    gotoxy(h+8, w+2);
+    printf("$$$$$$$$$$");
+    gotoxy(h+9, w+4);
+    printf("$$$$$$$$");
+    gotoxy(h+10, w+5);
+    printf("$$$$$$");
     fflush(stdout);
 }
 void print_dinosaur_rev(int h, int w)
@@ -112,5 +112,31 @@ void delete_dinosaur(int h, int w)
     printf("                ");
     gotoxy(h+10, w);
     printf("                ");
+    fflush(stdout);
+}
+void print_tree(int h, int w)
+{
+    gotoxy(h, w);
+    printf("        $$$$$$$ ");
+    gotoxy(h + 1, w);
+    printf("       $$ $$$$$$");
+    gotoxy(h + 2, w);
+    printf("       $$$$$$$$$");
+    gotoxy(h + 3, w);
+    printf("$      $$$      ");
+    gotoxy(h + 4, w);
+    printf("$$     $$$$$$$  ");
+    gotoxy(h + 5, w);
+    printf("$$$   $$$$$     ");
+    gotoxy(h + 6, w);
+    printf(" $$  $$$$$$$$$$ ");
+    gotoxy(h + 7, w);
+    printf(" $$$$$$$$$$$    ");
+    gotoxy(h + 8, w);
+    printf("  $$$$$$$$$$    ");
+    gotoxy(h + 9, w);
+    printf("    $$$$$$$$    ");
+    gotoxy(h + 10, w);
+    printf("     $$$$$$     ");
     fflush(stdout);
 }
