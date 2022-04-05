@@ -10,7 +10,7 @@ void game_select_phase(void)
 {
     init_keyboard();
 
-    print_boundary();
+    print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
     print_menu();
     int h = (MIN_LINES + MAX_LINES)/2 + 4;
     int w = (MIN_COLS + MAX_COLS)/2 - 2;
@@ -41,7 +41,7 @@ void game_select_phase(void)
                 }
                 else{
                     start_game();
-                    print_boundary();
+                    print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
                     print_menu();
                 }
             }
@@ -50,9 +50,9 @@ void game_select_phase(void)
         printf("*");
         fflush(stdout);
 
-        print_dinosaur();
+        print_dinosaur(MIN_LINES + 3, (MIN_COLS + MAX_COLS)/2 - 5);
         usleep(800000);
-        print_dinosaur_rev();
+        print_dinosaur_rev(MIN_LINES + 3, (MIN_COLS + MAX_COLS)/2 - 5);
         usleep(800000);
     }
     close_keyboard();
