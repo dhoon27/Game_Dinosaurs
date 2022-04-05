@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <pthread.h>
+
 #include "object_dino.h"
 #include "print_image.h"
 #include "linux_kbhit.h"
@@ -8,8 +10,8 @@
 
 void init_dino(void)
 {
-    dino.h = 12;
-    dino.w = DINO_MIN_W + 8;
+    dino.h = DINO_MIN_H;
+    dino.w = DINO_MIN_W;
     dino.hitbox[0][0] = DINO_MIN_W + 8;
     dino.hitbox[0][1] = DINO_MIN_W + 14;
 
@@ -45,14 +47,17 @@ void init_dino(void)
 }
 void jump_dino(void)
 {
+    
     int h = 0;
     int flag=1;
     int compensation = 15000;
     while (flag != 0 || h != 0)
     {
+        
         print_dinosaur(DINO_MIN_H + h, DINO_MIN_W);
         usleep(100000 + -1 * h * compensation);
         delete_dinosaur(DINO_MIN_H + h, DINO_MIN_W);
+       
         if(h == -5)
             flag = 0;
 
@@ -67,7 +72,7 @@ void jump_dino(void)
     }
     dino.h++;
 }
-void game_dino(void)
+void *game_dino(void* param)
 {
     init_keyboard();
     while(1){
@@ -76,7 +81,9 @@ void game_dino(void)
         if (_kbhit()){
             int ch = _getch();
             if (ch == 0x20){
+                
                 jump_dino();
+                
                 while (_kbhit()){
                     _getch();
                 }

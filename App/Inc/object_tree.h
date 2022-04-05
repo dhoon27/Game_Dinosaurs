@@ -22,8 +22,7 @@ TREE tree[MAX_TREE_CNT];
 int tidx;
 
 int check_tree(int, int);
-void game_tree(void);
-void move_tree(int, int);
-void delete_tree(int, int);
-void random_make_tree(int);
+void *game_tree(void*);
+void *start_tree(void*);
+int random_make_tree(int);
 void generate_tree(int);

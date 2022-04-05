@@ -9,3 +9,6 @@ void delete_xy(int, int);
 
 void print_tree(int, int);
 void delete_tree(int, int);
+
+void print_fail(void);
+void print_success(void);

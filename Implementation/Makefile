@@ -1,6 +1,6 @@
 CC = gcc
 # C compilation flags
-CFLAGS = -Wall #Warning all, Optimization level 2 
+CFLAGS = -Wall #Warning all 
 
 # header files path
 INC = -I../App/Inc/
@@ -28,10 +28,10 @@ OBJECTS = $(patsubst %.o,$(OBJ_DIR)/%.o,$(OBJS))
 all: $(TARGET)
 
 $(OBJECTS) : $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@ -lpthread
 
 $(TARGET) : $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET) -lpthread
 
 #만약 clean 이라는 file이 있을 때 make clean 명령이 clean 파일 build가 아닌 아래 명령을 수행하도록
 .PHONY: clean all

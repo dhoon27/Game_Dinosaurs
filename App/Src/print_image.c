@@ -1,7 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
 #include "print_image.h"
 #include "console_control.h"
+#include "object_tree.h"
 
+pthread_mutex_t mutex_lock;
 void print_boundary(int min_l, int min_c, int max_l, int max_c)
 {
     gotoxy(min_l, min_c);
@@ -38,6 +42,7 @@ void delete_xy(int lines, int cols)
 }
 void print_dinosaur(int h, int w)
 {
+    pthread_mutex_lock(&mutex_lock);
     gotoxy(h, w+8);
     printf("$$$$$$$");
     gotoxy(h+1, w+7);
@@ -61,6 +66,7 @@ void print_dinosaur(int h, int w)
     gotoxy(h+10, w+5);
     printf("$$$$$$");
     fflush(stdout);
+    pthread_mutex_unlock(&mutex_lock);
 }
 void print_dinosaur_rev(int h, int w)
 {
@@ -90,6 +96,7 @@ void print_dinosaur_rev(int h, int w)
 }
 void delete_dinosaur(int h, int w)
 {
+    pthread_mutex_lock(&mutex_lock);
     gotoxy(h, w);
     printf("                ");
     gotoxy(h+1, w);
@@ -113,43 +120,103 @@ void delete_dinosaur(int h, int w)
     gotoxy(h+10, w);
     printf("                ");
     fflush(stdout);
+    pthread_mutex_unlock(&mutex_lock);
 }
 void print_tree(int h, int w)
 {
-    gotoxy(h, w+2);
-    printf("#");
-    gotoxy(h + 1, w+1);
-    printf("###");
-    gotoxy(h + 2, w);
-    printf("#####");
-    gotoxy(h + 3, w+2);
-    printf("#");
-    gotoxy(h + 4, w+2);
-    printf("#");
-    fflush(stdout);
+    pthread_mutex_lock(&mutex_lock);
+
+    if (check_tree(h, w + 2))
+    {
+        gotoxy(h, w + 2);
+        printf("#");
+        fflush(stdout);
+    }
+    for (int nw = w + 1; nw < w + 4; nw++)
+    {
+        if (check_tree(h + 1, nw))
+        {
+            gotoxy(h + 1, nw);
+            printf("#");
+            fflush(stdout);
+        }
+    }
+    for (int nw = w; nw < w + 5; nw++)
+    {
+        if (check_tree(h + 2, nw))
+        {
+            gotoxy(h + 2, nw);
+            printf("#");
+            fflush(stdout);
+        }
+    }
+    if (check_tree(h + 3, w + 2))
+    {
+        gotoxy(h + 3, w + 2);
+        printf("#");
+        fflush(stdout);
+    }
+    if (check_tree(h + 4, w + 2))
+    {
+        gotoxy(h + 4, w + 2);
+        printf("#");
+        fflush(stdout);
+    }
+    pthread_mutex_unlock(&mutex_lock);
 }
-void print_tree_1(int h, int w)
+void delete_tree(int h, int w)
 {
-    gotoxy(h, w);
-    printf("#");
+    pthread_mutex_lock(&mutex_lock);
+
+    if (check_tree(h, w + 2))
+    {
+        gotoxy(h, w + 2);
+        printf(" ");
+        fflush(stdout);
+    }
+    for (int nw = w + 1; nw < w + 4; nw++)
+    {
+        if (check_tree(h + 1, nw))
+        {
+            gotoxy(h + 1, nw);
+            printf(" ");
+            fflush(stdout);
+        }
+    }
+    for (int nw = w; nw < w + 5; nw++)
+    {
+        if (check_tree(h + 2, nw))
+        {
+            gotoxy(h + 2, nw);
+            printf(" ");
+            fflush(stdout);
+        }
+    }
+    if (check_tree(h + 3, w + 2))
+    {
+        gotoxy(h + 3, w + 2);
+        printf(" ");
+        fflush(stdout);
+    }
+    if (check_tree(h + 4, w + 2))
+    {
+        gotoxy(h + 4, w + 2);
+        printf(" ");
+        fflush(stdout);
+    }
+    pthread_mutex_unlock(&mutex_lock);
 }
-void print_tree_2(int h, int w)
+void print_fail(void)
 {
-    gotoxy(h, w);
-    printf("##");
+    system("clear");
+    print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
+    gotoxy(10, 20);
+    printf("FAIL!");
 }
-void print_tree_3(int h, int w)
+void print_success(void)
 {
-    gotoxy(h, w);
-    printf("###");
-}
-void print_tree_4(int h, int w)
-{
-    gotoxy(h, w);
-    printf("####");
-}
-void print_tree_5(int h, int w)
-{
-    gotoxy(h, w);
-    printf("#####");
+    system("clear");
+    print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
+    gotoxy(10, 20);
+    printf("SUCCESS!");
 }
