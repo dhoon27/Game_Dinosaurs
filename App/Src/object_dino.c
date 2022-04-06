@@ -55,7 +55,6 @@ void jump_dino(void)
     int compensation = 15000;
     while (flag != 0 || h != 0)
     {
-        
         print_dinosaur(DINO_MIN_H + h, DINO_MIN_W);
         usleep(100000 + -1 * h * compensation);
         delete_dinosaur(DINO_MIN_H + h, DINO_MIN_W);
@@ -77,7 +76,8 @@ void jump_dino(void)
 void *game_dino(void* param)
 {
     init_keyboard();
-    while(1){
+    init_dino();
+    while (1){
         if(GAME_FLAG == 0)
             break;
         print_dinosaur(DINO_MIN_H, DINO_MIN_W);

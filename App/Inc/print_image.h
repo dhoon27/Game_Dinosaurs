@@ -12,3 +12,4 @@ void delete_tree(int, int);
 
 void print_fail(void);
 void print_success(void);
+void print_debug(void);

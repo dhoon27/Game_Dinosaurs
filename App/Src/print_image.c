@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include <unistd.h>
 #include "print_image.h"
 #include "console_control.h"
 #include "object_tree.h"
@@ -211,9 +212,12 @@ void delete_tree(int h, int w)
 void print_fail(void)
 {
     system("clear");
+    sleep(2);
     print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
-    gotoxy(10, 20);
+    gotoxy(10, 50);
     printf("FAIL!");
+    fflush(stdout);
+    sleep(2);
 }
 void print_success(void)
 {
@@ -221,4 +225,11 @@ void print_success(void)
     print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
     gotoxy(10, 20);
     printf("SUCCESS!");
+}
+void print_debug(void)
+{
+    pthread_mutex_lock(&mutex_lock);
+    gotoxy(35, 60);
+    printf("ss");
+    pthread_mutex_unlock(&mutex_lock);
 }

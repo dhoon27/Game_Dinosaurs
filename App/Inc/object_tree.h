@@ -19,7 +19,6 @@ typedef struct _TREE{
 }TREE;
 
 TREE tree[MAX_TREE_CNT];
-int tidx;
 
 int check_tree(int, int);
 void *game_tree(void*);

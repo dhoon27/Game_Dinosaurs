@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include "game_select_phase.h"
 #include "print_image.h"
@@ -9,7 +10,7 @@
 void game_select_phase(void)
 {
     init_keyboard();
-
+    system("clear");
     print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
     print_menu();
     int h = (MIN_LINES + MAX_LINES)/2 + 4;
@@ -43,6 +44,10 @@ void game_select_phase(void)
                     fflush(stdout);
                     close_keyboard();
                     start_game();
+                    system("clear");
+                    init_keyboard();
+                    fflush(stdin);
+                    fflush(stdout);
                     print_boundary(MIN_LINES, MIN_COLS, MAX_LINES, MAX_COLS);
                     print_menu();
                 }

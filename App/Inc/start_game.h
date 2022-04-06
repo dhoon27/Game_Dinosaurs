@@ -6,4 +6,4 @@
 #define GAME_MAX_LINES (23)
 
 void start_game(void);
-int checking_fail(void);
+void *checking_fail(void*);
