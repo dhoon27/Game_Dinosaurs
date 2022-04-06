@@ -54,8 +54,10 @@ void game_select_phase(void)
 
         print_dinosaur(MIN_LINES + 3, (MIN_COLS + MAX_COLS)/2 - 5);
         usleep(800000);
-        print_dinosaur_rev(MIN_LINES + 3, (MIN_COLS + MAX_COLS)/2 - 5);
+        delete_dinosaur(MIN_LINES + 3, (MIN_COLS + MAX_COLS) / 2 - 5);
+        print_dinosaur_rev(MIN_LINES + 3, (MIN_COLS + MAX_COLS) / 2 - 5);
         usleep(800000);
+        delete_dinosaur(MIN_LINES + 3, (MIN_COLS + MAX_COLS) / 2 - 5);
     }
     close_keyboard();
 }

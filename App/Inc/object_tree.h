@@ -26,3 +26,4 @@ void *game_tree(void*);
 void *start_tree(void*);
 int random_make_tree(int);
 void generate_tree(int);
+void move_tree(int);

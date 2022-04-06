@@ -7,6 +7,7 @@
 #include "object_tree.h"
 #include "print_image.h"
 
+int GAME_FLAG = 1;
 int checking_fail(void)
 {
     int idx;
@@ -47,15 +48,16 @@ void start_game(void)
     if(pthread_create(&pthread_cnt[0], NULL, game_dino, 0) != 0){
         return;
     }
-    if (pthread_create(&pthread_cnt[1], NULL, game_tree, 0) != 0){
+    if(pthread_create(&pthread_cnt[1], NULL, game_tree, 0) != 0){
         return;
     }
 
-    // game_dino();
-    // game_tree();
     while(1){
-        if (checking_fail())
+        if (checking_fail()){
+            GAME_FLAG = 0;
             print_fail();
+            return;
+        }
     }
     print_success();
 }

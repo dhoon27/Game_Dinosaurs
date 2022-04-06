@@ -70,6 +70,7 @@ void print_dinosaur(int h, int w)
 }
 void print_dinosaur_rev(int h, int w)
 {
+    pthread_mutex_lock(&mutex_lock);
     gotoxy(h, w);
     printf(" $$$$$$$        ");
     gotoxy(h+1, w);
@@ -93,6 +94,7 @@ void print_dinosaur_rev(int h, int w)
     gotoxy(h+10, w);
     printf("     $$$$$$     ");
     fflush(stdout);
+    pthread_mutex_unlock(&mutex_lock);
 }
 void delete_dinosaur(int h, int w)
 {

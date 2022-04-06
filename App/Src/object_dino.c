@@ -8,6 +8,8 @@
 #include "linux_kbhit.h"
 #include "console_control.h"
 
+extern int GAME_FLAG;
+
 void init_dino(void)
 {
     dino.h = DINO_MIN_H;
@@ -76,6 +78,8 @@ void *game_dino(void* param)
 {
     init_keyboard();
     while(1){
+        if(GAME_FLAG == 0)
+            break;
         print_dinosaur(DINO_MIN_H, DINO_MIN_W);
         fflush(stdin);
         if (_kbhit()){
@@ -92,4 +96,5 @@ void *game_dino(void* param)
     }
     fflush(stdout);
     close_keyboard();
+    return param;
 }
